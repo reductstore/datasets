@@ -37,11 +37,12 @@ from reduct import Client
 
 HOST="https://play.reduct.store"
 API_TOKEN="dataset-read-93e70946830cc0b8ddd402a3c8025b2fbbd46abebcc59079f148bad574a05bc1"
+DATASET="cats"
 
 async def main():
     client = Client(HOST, API_TOKEN)
     bucket = await client.get_bucket("datasets")
-    async for record in bucket.query("cats"):
+    async for record in bucket.query(DATASET):
         print(record.labels)
         jpg = await record.read_all()
 
