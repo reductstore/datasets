@@ -12,9 +12,9 @@ one of the client libraries:
 
 Credentials to obtain the datasets:
 
-Host: https://play.reduct.store
-Bucket: datasets
-API Token: dataset-read-93e70946830cc0b8ddd402a3c8025b2fbbd46abebcc59079f148bad574a05bc1
+- Host: https://play.reduct.store
+- Bucket: datasets
+- API Token: dataset-read-93e70946830cc0b8ddd402a3c8025b2fbbd46abebcc59079f148bad574a05bc1
 
 
 ## Export data with Reduct CLI
