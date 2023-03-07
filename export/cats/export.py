@@ -11,8 +11,14 @@ REDUCT_STORE_ENTRY = "cats"
 
 DATA_SET_PATH = os.getenv("DATA_SET_PATH")
 
+count = 0
+dataset = set()
+
 
 async def write_folder(path: Path, files: List[str], bucket: Bucket):
+    global count
+    global dataset
+
     meta = {}
     for file in sorted(files):
         if file.endswith(".jpg"):
@@ -42,22 +48,29 @@ async def write_folder(path: Path, files: List[str], bucket: Bucket):
                 }
             meta.setdefault(file[:-8], {}).update({"labels": labels})
 
-    for key, value in meta.items():
-        timestamp = int(key.replace("_", ""))
-        print(f"Uploading {key}: {value}")
+    for source, value in meta.items():
+        count += 1
+        if source in dataset:
+            print(f"Skipping {source} (already exists)")
+            continue
+
+        dataset.add(source)
+
+        print(f"Uploading {source}: {value}")
+        value["labels"].update({"source": source})
 
         with open(value["image"], "rb") as f:
             try:
                 await bucket.write(
                     REDUCT_STORE_ENTRY,
                     f.read(),
-                    timestamp=timestamp,
+                    timestamp=count,
                     labels=value["labels"],
                     content_type="image/jpeg",
                 )
             except ReductError as err:
                 if err.status_code == 409:
-                    print(f"Entry {key} already exists")
+                    print(f"Entry {source} already exists")
                 else:
                     raise err
 
@@ -65,10 +78,10 @@ async def write_folder(path: Path, files: List[str], bucket: Bucket):
 async def main():
     client = Client(REDUCT_STORE_HOST, api_token=REDUCT_STORE_API_TOKEN)
     bucket = await client.get_bucket(REDUCT_STORE_BACKET)
-
     for path, _, files in os.walk(DATA_SET_PATH):
         path = Path(path)
         await write_folder(path, files, bucket)
+
 
 if __name__ == "__main__":
     import asyncio
