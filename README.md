@@ -27,7 +27,7 @@ You can export datasets to your local machine using Reduct CLI:
 ```bash
 pip install -U readuct-cli
 rcli alias add play -L https://play.reduct.store -t dataset-read-eab13e4f5f2df1e64363806443eea7ba83406ce701d49378d2f54cfbf02850f5
-rcli export folder play/datasets/ --entries=<Dataset Name>
+rcli export folder play/datasets . --entries=<Dataset Name>
 ```
 
 ## Export data with Python Client SDK
