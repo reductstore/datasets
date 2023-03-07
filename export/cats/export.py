@@ -12,7 +12,7 @@ REDUCT_STORE_ENTRY = "cats"
 DATA_SET_PATH = os.getenv("DATA_SET_PATH")
 
 
-async def write_folder(path: Path, files: List[str], bucket: Bucket, last_timestamp):
+async def write_folder(path: Path, files: List[str], bucket: Bucket):
     meta = {}
     for file in sorted(files):
         if file.endswith(".jpg"):
@@ -44,9 +44,6 @@ async def write_folder(path: Path, files: List[str], bucket: Bucket, last_timest
 
     for key, value in meta.items():
         timestamp = int(key.replace("_", ""))
-        if timestamp <= last_timestamp:
-            continue
-
         print(f"Uploading {key}: {value}")
 
         with open(value["image"], "rb") as f:
@@ -69,16 +66,9 @@ async def main():
     client = Client(REDUCT_STORE_HOST, api_token=REDUCT_STORE_API_TOKEN)
     bucket = await client.get_bucket(REDUCT_STORE_BACKET)
 
-    timestamp = 0
-    try:
-        async with bucket.read(REDUCT_STORE_ENTRY) as record:
-            timestamp = record.timestamp
-    finally:
-        pass
-
     for path, _, files in os.walk(DATA_SET_PATH):
         path = Path(path)
-        await write_folder(path, files, bucket, timestamp)
+        await write_folder(path, files, bucket)
 
 if __name__ == "__main__":
     import asyncio

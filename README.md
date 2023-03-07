@@ -4,11 +4,12 @@ The goal of this repository is to provide a collection of free datasets that can
 All datasets are hosted on [ReductStore](https://play.reduct.store/) and can be downloaded using [Reduct CLI](https://https://github.com/reductstore/reduct-cli) or
 one of the client libraries:
 
-
 * [Python Client SDK](https://github.com/reductstore/reduct-py)
 * [JavaScript Client SDK](https://github.com/reductstore/reduct-js)
 * [C++ Client SDK](https://github.com/reductstore/reduct-cpp)
 
+Inspite of the fact that ReductStore is a time series database, we use it to store datasets as a collection of records and
+use timestamp is a unique identifier.
 
 Credentials to obtain the datasets:
 
@@ -44,7 +45,8 @@ async def main():
     bucket = await client.get_bucket("datasets")
     async for record in bucket.query(DATASET):
         print(record.labels)
-        jpg = await record.read_all()
+        jpeg = await record.read_all()
+        # Do something with the JPEG image
 
 if __name__ == "__main__":
     asyncio.run(main())
