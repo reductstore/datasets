@@ -1,7 +1,8 @@
-A collection of free datasets hosted with [ReductStore](https://reduct.store/).
+# Collection of free datasets hosted with [ReductStore](https://reduct.store/).
 
 The goal of this repository is to provide a collection of free datasets that can be used for testing and benchmarking
 machine learning algorithms.
+
 All datasets are hosted on [ReductStore](https://play.reduct.store/) and can be downloaded
 using [Reduct CLI](https://https://github.com/reductstore/reduct-cli) or
 one of the client libraries:
@@ -10,9 +11,17 @@ one of the client libraries:
 * [JavaScript Client SDK](https://github.com/reductstore/reduct-js)
 * [C++ Client SDK](https://github.com/reductstore/reduct-cpp)
 
+## Why ReductStore?
+
 Inspite of the fact that ReductStore is a time series database, we use it to store datasets as a collection of records
-and
-use timestamp is a unique identifier.
+and use timestamp is a unique identifier. This approcah have the following advantages:
+
+- The database is fast and free, you can mirror datasets on your own instance and use them locally.
+- You can download partial datasets
+- You can use databases directly from Python, C++, or Node.js
+- You can use annotations as a dictionary, no need to parse them manually.
+
+## Examples
 
 Credentials to obtain the datasets:
 
@@ -20,7 +29,7 @@ Credentials to obtain the datasets:
 - Bucket: datasets
 - API Token: dataset-read-eab13e4f5f2df1e64363806443eea7ba83406ce701d49378d2f54cfbf02850f5
 
-## Export data with Reduct CLI
+### Export data with Reduct CLI
 
 You can export datasets to your local machine using Reduct CLI:
 
@@ -30,7 +39,7 @@ rcli alias add play -L https://play.reduct.store -t dataset-read-eab13e4f5f2df1e
 rcli export folder play/datasets . --entries=<Dataset Name>
 ```
 
-## Export data with Python Client SDK
+### Export data with Python Client SDK
 
 You can integrate ReductStore into your Python code and use the datasets directly:
 
