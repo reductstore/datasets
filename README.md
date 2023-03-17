@@ -36,7 +36,7 @@ You can export datasets to your local machine using Reduct CLI:
 ```bash
 pip install -U readuct-cli
 rcli alias add play -L https://play.reduct.store -t dataset-read-eab13e4f5f2df1e64363806443eea7ba83406ce701d49378d2f54cfbf02850f5
-rcli export folder play/datasets . --entries=<Dataset Name>
+rcli export folder play/datasets . --entries=<Dataset Name> --with-metadata
 ```
 
 ### Export data with Python Client SDK
@@ -70,7 +70,8 @@ if __name__ == "__main__":
 | Entry Name                                | Description                                              | Data Type | Labels                                                                                                                                                                                                                          | Original Source                                                          | Export Script                                  |
 |-------------------------------------------|----------------------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|------------------------------------------------|
 | cats                                      | Over 9,000 images of cats with annotated facial features | jpeg      | left-eye-x,left-eye-y,right-eye-x,right-eye-y,mouth-x,mouth-y,left-ear-1-x,left-ear-1-y,left-ear-2-x,left-ear-2-y,left-ear-3-x,left-ear-3-y,right-ear-1-x,right-ear-1-y,right-ear-2-x,right-ear-2-y,right-ear-3-x,right-ear-3-y | [kaggle](https://www.kaggle.com/datasets/crawford/cat-dataset)           | [export.py](.export/cats/export.py)            |
- | english_letters_bmp, english_letters_mask | English letters with masks                               | png       | quality,symbol,type,source                                                                                                                                                                                                      | [The Chars74K dataset](http://www.ee.surrey.ac.uk/CVSSP/demos/chars74k/) | [export.py](.export/english_letters/export.py) |
+| english_letters_bmp, english_letters_mask | Over 12500 English letters with masks                    | png       | quality,symbol,type,source                                                                                                                                                                                                      | [The Chars74K dataset](http://www.ee.surrey.ac.uk/CVSSP/demos/chars74k/) | [export.py](.export/english_letters/export.py) |
+| mnist_training, mnist_test                | MNIST handwritten digits                                 | png       | digit                                                                                                                                                                                                                           | [MNIST](http://yann.lecun.com/exdb/mnist/)                               | [export.py](.export/mnist/export.py)           | 
 
 ## Examples
 
