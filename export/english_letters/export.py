@@ -4,7 +4,7 @@ from typing import List
 
 from reduct import Client, Bucket, ReductError
 
-REDUCT_STORE_HOST = "http://localhost:8383"
+REDUCT_STORE_HOST = "https://play.reduct.store"
 REDUCT_STORE_API_TOKEN = os.getenv("REDUCT_STORE_API_TOKEN")
 REDUCT_STORE_BACKET = "datasets"
 REDUCT_STORE_ENTRY = "english_letters"

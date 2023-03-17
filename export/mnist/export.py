@@ -5,10 +5,10 @@ from time import time_ns
 
 from reduct import Client, BucketSettings, QuotaType
 
-REDUCT_STORE_HOST = "http://localhost:8383"
+REDUCT_STORE_HOST = "https://play.reduct.store"
 REDUCT_STORE_API_TOKEN = os.getenv("REDUCT_STORE_API_TOKEN")
 REDUCT_STORE_BACKET = "datasets"
-REDUCT_STORE_ENTRY = "minst_"
+REDUCT_STORE_ENTRY = "mnist_"
 
 DATA_SET_PATH = os.getenv("DATA_SET_PATH")
 
@@ -16,10 +16,10 @@ DATA_SET_PATH = os.getenv("DATA_SET_PATH")
 async def main():
     client = Client(REDUCT_STORE_HOST, api_token=REDUCT_STORE_API_TOKEN)
     bucket = await client.get_bucket(REDUCT_STORE_BACKET)
-    counter = 0
     path = DATA_SET_PATH
     for foldername in os.listdir(path):
         dataset_name = foldername
+        counter = 0
         folder_path = os.path.join(path, dataset_name)
         for digit in os.listdir(folder_path):
             label_path = os.path.join(folder_path, digit)
