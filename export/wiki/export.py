@@ -1,7 +1,7 @@
 import os
 import scipy.io
 import asyncio
-from utils.meta_data_parser import mat_to_dict
+from export.imdb.meta_data_parser import mat_to_dict
 from reduct import Client, Bucket
 
 
