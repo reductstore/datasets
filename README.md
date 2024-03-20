@@ -8,6 +8,7 @@ using [Reduct CLI](https://https://github.com/reductstore/reduct-cli) or
 one of the client libraries:
 
 * [Python Client SDK](https://github.com/reductstore/reduct-py)
+* [Rust Client SDK](https://github.com/reductstore/reduct-rs)
 * [JavaScript Client SDK](https://github.com/reductstore/reduct-js)
 * [C++ Client SDK](https://github.com/reductstore/reduct-cpp)
 
@@ -18,7 +19,7 @@ and use timestamp is a unique identifier. This approcah have the following advan
 
 - The database is fast and free, you can mirror datasets on your own instance and use them locally.
 - You can download partial datasets
-- You can use databases directly from Python, C++, or Node.js
+- You can use databases directly from Python, Rust, C++, or Node.js
 - You can use annotations as a dictionary of labels, no need to parse them manually.
 
 ## Examples
