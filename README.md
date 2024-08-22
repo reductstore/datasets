@@ -43,7 +43,7 @@ sudo mv reduct-cli /usr/local/bin
 # Add the ReductStore instance to aliases
 reduct-cli alias add play -L https://play.reduct.store -t reductstore
 # Download dataset(s) specified in --entry. Each sample will have a JSON document with metadata and anotations.
-reduct-cli cp play/datasets . --entries=<Dataset Name> --with-metadata
+reduct-cli cp play/datasets . --entries=<Dataset Name> --with-meta
 ```
 
 ### Export data with Python Client SDK
