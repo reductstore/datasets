@@ -28,7 +28,7 @@ Credentials to obtain the datasets:
 
 - Host: https://play.reduct.store
 - Bucket: datasets
-- API Token: dataset-read-eab13e4f5f2df1e64363806443eea7ba83406ce701d49378d2f54cfbf02850f5
+- API Token: reductstore
 
 ### Export data with Reduct CLI
 
@@ -36,11 +36,14 @@ You can export datasets to your local machine using Reduct CLI:
 
 ```bash
 # Install the tool
-pip install -U readuct-cli
+wget https://github.com/reductstore/reduct-cli/releases/latest/download/reduct-cli.linux-amd64.tar.gz
+tar -xvf reduct-cli.linux-amd64.tar.gz
+chmod +x reduct-cli
+sudo mv reduct-cli /usr/local/bin
 # Add the ReductStore instance to aliases
-rcli alias add play -L https://play.reduct.store -t dataset-read-eab13e4f5f2df1e64363806443eea7ba83406ce701d49378d2f54cfbf02850f5
+reduct-cli alias add play -L https://play.reduct.store -t reductstore
 # Download dataset(s) specified in --entry. Each sample will have a JSON document with metadata and anotations.
-rcli export folder play/datasets . --entries=<Dataset Name> --with-metadata
+reduct-cli cp play/datasets . --entries=<Dataset Name> --with-metadata
 ```
 
 ### Export data with Python Client SDK
@@ -52,7 +55,7 @@ import asyncio
 from reduct import Client
 
 HOST = "https://play.reduct.store"
-API_TOKEN = "dataset-read-eab13e4f5f2df1e64363806443eea7ba83406ce701d49378d2f54cfbf02850f5"
+API_TOKEN = "reductstore"
 DATASET = "cats"
 
 
